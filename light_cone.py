@@ -130,15 +130,15 @@ def Suz_trot_real_pert(psi, dt, N_steps, H_bond_tebd, H_perturbed_ev, H_perturbe
         
 
 
-Nmax=5
-L=30
+Nmax=8
+L=16
 g= float(sys.argv[1])
-Omega  = 1
+Omega  = float(sys.argv[2])
 J=1   
 pert=0
-dt=0.05
-tmax=3
-NB=int(sys.argv[2])
+dt=0.01
+tmax=1
+NB=3
 sites = sites(L,Nmax)
 ps= mixed_state(L)
 psi=MPS.from_product_state(sites, ps)
@@ -156,25 +156,25 @@ for i in range(NB):
   psi.apply_local_op(0, 'Bd')
 
 
-psi.apply_local_op(16,sites[1].Cd-0.9*sites[1].C, unitary=True)
+psi.apply_local_op(int(L/2),sites[1].Cd-0.9*sites[1].C, unitary=True)
 
 
 
-ID='g_'+str(g)+'Nb'+str(NB)
+ID='g_'+str(g)+'Nb_'+str(NB)+'Omega_'+str(Omega)
 
 
 
 n_i_t=[]
 n_i=[]
 NBt=[]
-for i in range(L-1):
+for i in range(L):
     n_i.append(psi.expectation_value('N', i+1))
 n_i_t.append(n_i)
 for i in range(int(tmax/dt)):
    print("time_step:", i)
    Suz_trot_real_pert(psi, dt, 1, H_bond_tebd, H_perturbed_ev, H_perturbed_odd)
    n_i=[]
-   for j in range(L-1):
+   for j in range(L):
        n_i.append(psi.expectation_value('N', j+1))
    n_i_t.append(n_i)
    NBt.append(psi.expectation_value('N', 0))

@@ -122,11 +122,11 @@ def Suz_trot_im(psi, delta_t, max_error_E, N_steps, H_bond_tebd, H_bond):
       print("After", step, "steps, bond_E = ", E, "and DeltaE = ", DeltaE )
 
 Nmax=5
-L=30
-g= float(sys.argv[1])
-Omega  = float(sys.argv[2])
+L=int(sys.argv[1])
+g= float(sys.argv[2])
+Omega  = float(sys.argv[3])
 J=1   
-max_error_E=1.e-6
+max_error_E=1.e-5
 N_steps=5
 sites = sites(L,Nmax)
 ps= product_state(L)
