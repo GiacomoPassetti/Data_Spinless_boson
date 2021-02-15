@@ -1,1 +1,0 @@
-the error of the runLC_coherent_L120_g1.5_Omega_5.0displacement_0.0dt_0.01is 0.219541642674

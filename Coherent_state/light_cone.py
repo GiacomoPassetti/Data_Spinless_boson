@@ -170,10 +170,10 @@ def LC(psi, tmax):
 
 #Define parameters 
 Nmax=8
-L=120
+L=60
 g= float(sys.argv[1])
 Omega  = float(sys.argv[2])
-J=1   
+J=2   
 alpha=float(sys.argv[3])
 dt=1/100
 tmax=3
@@ -182,7 +182,7 @@ verbose=False
 trunc_param={'chi_max':80,'svd_min': 0.00000000000001, 'verbose': verbose}
 sites = sites(L,Nmax)
 ps= mixed_state(L)
-ID='LC_coherent_L'+str(L)+'_g'+str(g)+'_Omega_'+str(Omega)+'displacement_'+str(alpha)+'dt_'+str(dt)
+ID='LC_coherent_L'+str(L)+'_g'+str(g)+'_Omega_'+str(Omega)+'displacement_'+str(alpha)+'dt_'+str(dt)+'J_'+str(J)
 
 with open('GS_J_1V_0L_120DMRG.pkl', 'rb') as f:
     psifermion = pickle.load(f)
