@@ -151,7 +151,7 @@ def LC(psi, tmax):
   x_t=[]
   N_av=[]
   N_sq=[]
-
+  err=[]
   for i in range(L):
     n_i.append(psi.expectation_value('N', i+1))
   n_i_t.append(n_i)
@@ -167,6 +167,7 @@ def LC(psi, tmax):
      x_t.append(psi.expectation_value(X, [0]))
      N_av.append(psi.expectation_value('N', [0]))
      N_sq.append(psi.expectation_value('NN', [0]))
+     err.append(eps)
 
      
 
@@ -174,13 +175,13 @@ def LC(psi, tmax):
   np.save(ID+'X(t)', x_t)    
   np.save(ID+'N_ph(t)', N_av)
   np.save(ID+'N_sq', N_sq)
-  np.save(ID+'eps', eps)
+  np.save(ID+'eps', err)
 
 
 
 #Define parameters 
 Nmax=8
-L=120
+L=40
 g= float(sys.argv[1])
 Omega  = 10
 pert=0.1
@@ -191,7 +192,7 @@ dt=1/80
 tmax=5
 N_steps=1
 verbose=False
-trunc_param={'chi_max':80,'svd_min': 0.00000000000001, 'verbose': verbose}
+trunc_param={'chi_max':120,'svd_min': 1.e-14, 'verbose': verbose}
 sites = sites(L,Nmax)
 ps= mixed_state(L)
 ID='LC_Impurity_L'+str(L)+'_g'+str(g)+'_Omega_'+str(Omega)+'dt_'+str(dt)+'J_'+str(J)+'alpha_'+str(alpha)+'N_ph_'+str(NN)
