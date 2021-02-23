@@ -51,7 +51,7 @@ def product_state(L):
     return ps
 J=1
 dt=0.05
-L=120
+L=80
 V=0
 mu=0
 steps=40
