@@ -5,7 +5,7 @@ Created on Mon Feb 22 11:10:56 2021
 @author: giaco
 """
 import sys
-sys.path.append('C:/Users/giaco/Desktop/Cluster/Quench_stark')
+
 import numpy as np
 from N_cons import ansatz_wf, Suz_trot_im, H_Peier_bond, full_sweep, U_bond
 import tenpy.linalg.np_conserved as npc
@@ -51,6 +51,7 @@ A.append(psi.expectation_value(psi.sites[0].B+psi.sites[0].Bd, [0]))
 errors.append(eps)
 ts=time.time()
 for i in range(int(tmax//(10*dt))):
+    print('start of the sweep')
     eps += full_sweep(psi, 10, U, Id, trunc_param, L).eps
     print('test', time.time()-ts)
     n_av.append(psi.expectation_value('N'))

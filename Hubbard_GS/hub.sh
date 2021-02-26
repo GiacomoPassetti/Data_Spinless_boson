@@ -1,4 +1,4 @@
-for g in 0 1 2
+for g in 0 
 do
 for J in 1
 do 

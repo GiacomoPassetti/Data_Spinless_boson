@@ -47,6 +47,30 @@ def product_state(L):
         ps.append('full')
     return ps
 
+def last_site(L):
+    ps=['vac']
+    for i in range(int(L-1)):
+        ps.append('empty')
+    ps.append('full')
+    return ps
+
+def first_site(L):
+    ps=['vac']
+    ps.append('full')
+    for i in range(int(L-2)):
+        ps.append('empty')
+    
+    ps.append('full')
+    return ps
+def left(L):
+    ps=['vac']
+    
+    for i in range(int(L/2)):
+        ps.append('full')
+    for i in range(int(L/2)):
+        ps.append('empty')
+
+    return ps
 def mixed_state(L):
     ps=['vac']
     ms = np.array([1/np.sqrt(2), 1/np.sqrt(2)])
@@ -128,11 +152,23 @@ def ansatz_wf(Nmax, L):
     psi=MPS.from_product_state(site, ps)
     return psi
 
+def ansatz_last(Nmax, L):
+    ps=last_site(L)
+    site= sites(L,Nmax)
+    psi=MPS.from_product_state(site, ps)
+    return psi
 
+def ansatz_first(Nmax, L):
+    ps=first_site(L)
+    site= sites(L,Nmax)
+    psi=MPS.from_product_state(site, ps)
+    return psi
 
-
-
-
+def ansatz_left(Nmax, L):
+    ps=left(L)
+    site= sites(L,Nmax)
+    psi=MPS.from_product_state(site, ps)
+    return psi
 
 def apply_local_cav_r(psi, i, op, trunc_param):
             
@@ -294,13 +330,11 @@ def Suz_trot_im(psi, delta_t, max_error_E, N_steps, H_bond, trunc_param, L, Id):
       E=Energy(psi, H_bond, L, trunc_param)
       DeltaE=np.abs(E_old-E)
       E_old=E
-      if time.time()-start_time > 28000:
+      if step > 1200:
           break
 
       
       print("After", step, "steps, E_tot = ", E, "and DeltaE = ", DeltaE , "Time of evaluation:", time.time()-start_time)
-    if time.time()-start_time > 28000:
-          break
       
       
 

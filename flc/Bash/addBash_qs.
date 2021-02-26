@@ -1,0 +1,18 @@
+ #!/usr/local_rwth/bin/zsh
+#SBATCH --job-name=lff0.005
+#SBATCH -c 18
+#SBATCH --time=47:59:00
+#SBATCH --account=rwth0722
+#SBATCH --mem-per-cpu=3200M
+#SBATCH --mail-user=passetti@physik.rwth-aachen.de
+#SBATCH --output=/home/yz004406/Desktop
+
+for g in 0.25 0.5 ; do
+  
+ cd /home/yz004406/Spinless_Boson/flc
+ 
+ export PYTHONPATH=/home/yz004406/TeNPy
+
+  python3 time.py 2 140 0.005
+  
+

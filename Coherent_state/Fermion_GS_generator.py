@@ -35,7 +35,7 @@ import pickle
 
 
 def sites(L):
- FSite=FermionSite(None, filling=0.5)
+ FSite=FermionSite('N', filling=0.5)
 
  sites=[]
  
@@ -51,7 +51,7 @@ def product_state(L):
     return ps
 J=1
 dt=0.05
-L=80
+L=42
 V=0
 mu=0
 steps=40
@@ -59,7 +59,7 @@ sites=sites(L)
 ps=product_state(L)
 psi=MPS.from_product_state(sites, ps)
 psi2=MPS.from_product_state(sites, ps)
-model_params={'bc_MPS':'finite', 'bc_x':'open', 'explicit_plus_hc':True, 'lattice':'Chain', 'J':J, 'conserve':None, 'V':V, 'mu':mu, 'L':L}
+model_params={'bc_MPS':'finite', 'bc_x':'open', 'explicit_plus_hc':True, 'lattice':'Chain', 'J':J, 'conserve':'N', 'V':V, 'mu':mu, 'L':L}
 FC=tenpy.models.fermions_spinless.FermionChain(model_params)
 print(FC.calc_H_bond()[0])
 verbose=True
