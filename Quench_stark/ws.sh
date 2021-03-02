@@ -1,4 +1,4 @@
-for L in  40
+for L in  20 40
 do
 for g0 in 0 1 2 3 4
 do 
@@ -29,7 +29,7 @@ export MKL_NUM_THREADS
 
 
 export PYTHONPATH=$HOME/TeNPy
-python3 qstark.py $L $g0
+python3 ws.py $L $g0
 
 
 echo \$?
