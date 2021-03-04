@@ -1,6 +1,6 @@
-for L in  20 40
+for L in  12 24 36
 do
-for g0 in 0 1 2 3 4
+for g0 in 0  
 do 
  
 
